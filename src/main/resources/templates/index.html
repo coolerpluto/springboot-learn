@@ -21,10 +21,39 @@
 </form>
 <a href="/user/2/book/3"> @PathVariable路径变量</a>
 
+<!--测试@RequestBody注解，能够将前端传来的kv值封装-->
 <form action="/post/form1" method="post">
     name:<input type="text" name="name" />
     password:<input type="password" name="password"/>
     <input type="submit" value="submit">
+</form>
+
+<!--测试前端传user类的属性，然后后端对参数对象自动装配，封装成一个user-->
+<!--
+    private Integer id;
+    private String userName;
+-->
+<form action="/index/user" method="post">
+    id:<input name="id" type="text"/>
+    userName<input name="userName" type="text"/>
+    <input type="submit" value="提交">
+</form>
+<!--
+    private Integer id;
+
+    private String name;
+
+    private Clazz clazz;-->
+
+<!--
+    private Integer id;
+    private String name;-->
+<form action="/index/student" method="post">
+    studentid:<input name="id" type="text"/>
+    studentName<input name="name" type="text"/>
+    classid<input name="clazz.id" type="text">
+    classname<input name="clazz.name" type="text">
+    <input type="submit" value="提交">
 </form>
 </body>
 </html>

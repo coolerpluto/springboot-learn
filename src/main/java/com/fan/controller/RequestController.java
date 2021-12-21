@@ -1,5 +1,7 @@
 package com.fan.controller;
 
+import com.fan.bean.Student;
+import com.fan.bean.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +54,6 @@ public class RequestController {
         response.addCookie(cookie);
         return "forward:/success";//请求跳转到下面这个success方法。forward写法：要想直接跳转使用某个方法，必须要与目的方法的RequestMapping的value值相等
     }
-
     @ResponseBody
     @GetMapping("/success")
     public Map success(HttpServletRequest request){
@@ -65,5 +66,24 @@ public class RequestController {
         map1.put("model", model);
         map1.put("request1", request1);
         return map1;
+    }
+
+//    测试前端传user类的属性，然后后端对参数对象自动装配，封装成一个user
+    @ResponseBody
+    @PostMapping("/index/user")
+    public User getUserFromIndex(User user){
+        return user;
+    }
+    @ResponseBody
+    @PostMapping("/index/student")
+    public Student getStudentFromIndex(Student student){
+        return student;
+    }
+
+    @GetMapping("/tmleaf1")
+    public String tmleaf(Model model){
+        model.addAttribute("msg", "thymleaf测试");
+        model.addAttribute("link1","http://www.baidu.com");
+        return "success";
     }
 }
